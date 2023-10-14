@@ -14,6 +14,7 @@ class _QuizModelState extends State<QuizModel> {
     'Approximately one quarter of human bones are in the feet?',
     'A slug\'s blood is green?',
   ];
+  List<bool> answers = [false, true, true];
   int questionNumber = 0;
   @override
   Widget build(BuildContext context) {
@@ -54,12 +55,22 @@ class _QuizModelState extends State<QuizModel> {
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  scoreKeeper.add(
-                    const Icon(Icons.check, color: Colors.green),
-                  );
-                  questionNumber++;
-                });
+                bool correctAns = answers[questionNumber];
+                if (correctAns == true) {
+                  setState(() {
+                    scoreKeeper.add(
+                      const Icon(Icons.check, color: Colors.green),
+                    );
+                    questionNumber++;
+                  });
+                } else {
+                  setState(() {
+                    scoreKeeper.add(
+                      const Icon(Icons.close, color: Colors.red),
+                    );
+                    questionNumber++;
+                  });
+                }
               },
             ),
           ),
@@ -81,12 +92,22 @@ class _QuizModelState extends State<QuizModel> {
                 ),
               ),
               onPressed: () {
-                setState(() {
-                  scoreKeeper.remove(
-                    const Icon(Icons.close, color: Colors.red),
-                  );
-                  questionNumber++;
-                });
+                bool correctAns = answers[questionNumber];
+                if (correctAns == false) {
+                  setState(() {
+                    scoreKeeper.add(
+                      const Icon(Icons.check, color: Colors.green),
+                    );
+                    questionNumber++;
+                  });
+                } else {
+                  setState(() {
+                    scoreKeeper.add(
+                      const Icon(Icons.close, color: Colors.red),
+                    );
+                    questionNumber++;
+                  });
+                }
               },
             ),
           ),

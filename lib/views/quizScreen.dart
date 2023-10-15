@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import '../model/quiz_brain.dart';
 
 class QuizModel extends StatefulWidget {
   const QuizModel({super.key});
@@ -10,16 +10,7 @@ class QuizModel extends StatefulWidget {
 
 class _QuizModelState extends State<QuizModel> {
   List<Widget> scoreKeeper = [];
-  List<Question> questionBook = [
-    Question(
-        question: 'You can lead a cow down stairs but not up stairs?',
-        answer: false),
-    Question(question: 'A slug\'s blood is green?', answer: true),
-    Question(
-        question: 'Approximately one quarter of human bones are in the feet?',
-        answer: true),
-  ];
-  int questionNumber = 0;
+  QuizBrain quizBrain = QuizBrain();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,7 +23,7 @@ class _QuizModelState extends State<QuizModel> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBook[questionNumber].question,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -59,20 +50,20 @@ class _QuizModelState extends State<QuizModel> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = questionBook[questionNumber].answer;
+                bool correctAns = quizBrain.getQuestionAnswer();
                 if (correctAns == true) {
                   setState(() {
                     scoreKeeper.add(
                       const Icon(Icons.check, color: Colors.green),
                     );
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                   });
                 } else {
                   setState(() {
                     scoreKeeper.add(
                       const Icon(Icons.close, color: Colors.red),
                     );
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                   });
                 }
               },
@@ -96,20 +87,20 @@ class _QuizModelState extends State<QuizModel> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = questionBook[questionNumber].answer;
+                bool correctAns = quizBrain.getQuestionAnswer();
                 if (correctAns == false) {
                   setState(() {
                     scoreKeeper.add(
                       const Icon(Icons.check, color: Colors.green),
                     );
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                   });
                 } else {
                   setState(() {
                     scoreKeeper.add(
                       const Icon(Icons.close, color: Colors.red),
                     );
-                    questionNumber++;
+                    quizBrain.nextQuestion();
                   });
                 }
               },

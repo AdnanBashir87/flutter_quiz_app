@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 class QuizModel extends StatefulWidget {
   const QuizModel({super.key});
@@ -9,12 +10,15 @@ class QuizModel extends StatefulWidget {
 
 class _QuizModelState extends State<QuizModel> {
   List<Widget> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs?',
-    'Approximately one quarter of human bones are in the feet?',
-    'A slug\'s blood is green?',
+  List<Question> questionBook = [
+    Question(
+        question: 'You can lead a cow down stairs but not up stairs?',
+        answer: false),
+    Question(question: 'A slug\'s blood is green?', answer: true),
+    Question(
+        question: 'Approximately one quarter of human bones are in the feet?',
+        answer: true),
   ];
-  List<bool> answers = [false, true, true];
   int questionNumber = 0;
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class _QuizModelState extends State<QuizModel> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                questionBook[questionNumber].question,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 25.0,
@@ -55,7 +59,7 @@ class _QuizModelState extends State<QuizModel> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = answers[questionNumber];
+                bool correctAns = questionBook[questionNumber].answer;
                 if (correctAns == true) {
                   setState(() {
                     scoreKeeper.add(
@@ -92,7 +96,7 @@ class _QuizModelState extends State<QuizModel> {
                 ),
               ),
               onPressed: () {
-                bool correctAns = answers[questionNumber];
+                bool correctAns = questionBook[questionNumber].answer;
                 if (correctAns == false) {
                   setState(() {
                     scoreKeeper.add(

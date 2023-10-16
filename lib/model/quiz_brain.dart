@@ -11,27 +11,6 @@ class QuizBrain {
     Question(
         question: 'Approximately one quarter of human bones are in the feet?',
         answer: true),
-    Question(
-        question: 'You can lead a cow down stairs but not up stairs?',
-        answer: false),
-    Question(question: 'A slug\'s blood is green?', answer: true),
-    Question(
-        question: 'Approximately one quarter of human bones are in the feet?',
-        answer: true),
-    Question(
-        question: 'You can lead a cow down stairs but not up stairs?',
-        answer: false),
-    Question(question: 'A slug\'s blood is green?', answer: true),
-    Question(
-        question: 'Approximately one quarter of human bones are in the feet?',
-        answer: true),
-    Question(
-        question: 'You can lead a cow down stairs but not up stairs?',
-        answer: false),
-    Question(question: 'A slug\'s blood is green?', answer: true),
-    Question(
-        question: 'Approximately one quarter of human bones are in the feet?',
-        answer: true),
   ];
 
   String getQuestionText() {
@@ -46,5 +25,18 @@ class QuizBrain {
     if (_questionNumber < _questionBook.length - 1) {
       _questionNumber++;
     }
+  }
+
+  bool isQuizFinished() {
+    if (_questionNumber >= _questionBook.length - 1) {
+      print('Returning a statement true');
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void resetQuestionNumber() {
+    _questionNumber = 0;
   }
 }

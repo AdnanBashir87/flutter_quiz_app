@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Quizler'),
         centerTitle: true,
       ),
+      // floatingActionButton: FloatingActionButton,
       body: const SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0),
